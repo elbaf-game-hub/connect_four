@@ -1,5 +1,11 @@
 name: connect_four
 description: Connect Four — Game Hub module.
+
+# Mobile bundle identifiers
+#   Android: applicationId = com.elbaftech.game_hub.connect_four
+#   iOS:     CFBundleIdentifier = com.elbaftech.game_hub.connect_four
+#   Apply with: ./tool/apply_bundle_ids.sh connect_four
+#
 version: 0.1.0
 publish_to: none
 
