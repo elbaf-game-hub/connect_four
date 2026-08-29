@@ -439,6 +439,8 @@ class _ConnectFourPageState extends State<ConnectFourPage>
         'assets/svg/connect_four/$svgName',
         package: 'game_assets',
         fit: BoxFit.contain,
+        placeholderBuilder: (context) =>
+            _buildFallbackPiece(player, isWinningPiece),
       );
 
       if (isWinningPiece) {
@@ -462,6 +464,33 @@ class _ConnectFourPageState extends State<ConnectFourPage>
         padding: const EdgeInsets.all(2),
         child: pieceContent,
       ),
+    );
+  }
+
+  Widget _buildFallbackPiece(Player player, bool isWinningPiece) {
+    final color = player == Player.red
+        ? const Color(0xFFE4536A)
+        : const Color(0xFFFFD43B);
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: color,
+        border: isWinningPiece
+            ? Border.all(color: const Color(0xFFFFD700), width: 3)
+            : null,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 2,
+            offset: Offset(0, 1),
+          ),
+        ],
+      ),
+      child: isWinningPiece
+          ? const Center(
+              child: Icon(Icons.star, color: Colors.white, size: 16),
+            )
+          : null,
     );
   }
 }
