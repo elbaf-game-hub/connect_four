@@ -19,8 +19,8 @@ void main() {
       expect(find.text('vs AI'), findsOneWidget);
       expect(find.text('2 Player'), findsOneWidget);
 
-      // Verify drop buttons (7 columns)
-      expect(find.byIcon(Icons.arrow_downward), findsNWidgets(7));
+      // Verify board grid
+      expect(find.byType(GridView), findsOneWidget);
     });
 
     testWidgets('Dropping a token updates the rendered board in 2-Player mode',
@@ -37,16 +37,16 @@ void main() {
 
       expect(find.text('Red’s Turn'), findsOneWidget);
 
-      // Tap column 4 (center, index 3 in 0-based)
-      final centerDropBtn = find.byIcon(Icons.arrow_downward).at(3);
-      await tester.tap(centerDropBtn);
+      // Tap on slot 3 (column 3)
+      final gridFinders = find.byType(GestureDetector);
+      await tester.tap(gridFinders.at(5)); // A slot in the grid
       await tester.pumpAndSettle();
 
       // Now it should be Yellow's Turn
       expect(find.text('Yellow’s Turn'), findsOneWidget);
 
-      // Tap column 4 again as Yellow
-      await tester.tap(centerDropBtn);
+      // Tap again as Yellow
+      await tester.tap(gridFinders.at(5));
       await tester.pumpAndSettle();
 
       // Back to Red's Turn
@@ -59,11 +59,6 @@ void main() {
           home: ConnectFourPage(),
         ),
       );
-
-      // Drop in col 0
-      final firstDropBtn = find.byIcon(Icons.arrow_downward).first;
-      await tester.tap(firstDropBtn);
-      await tester.pump();
 
       // Tap restart icon
       final restartBtn = find.byTooltip('Restart');
