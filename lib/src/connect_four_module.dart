@@ -1,4 +1,7 @@
-part of '../connect_four.dart';
+import 'package:flutter/material.dart';
+import 'package:game_module/game_module.dart';
+
+import 'connect_four_page.dart';
 
 GameModule get connectFourModule => const _ConnectFourModule();
 

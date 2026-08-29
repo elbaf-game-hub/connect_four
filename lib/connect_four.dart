@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:game_module/game_module.dart';
+library connect_four;
 
-part 'src/connect_four_module.dart';
-part 'src/connect_four_page.dart';
+export 'src/connect_four_module.dart';
+export 'src/connect_four_page.dart';
+export 'src/connect_four_state.dart';
